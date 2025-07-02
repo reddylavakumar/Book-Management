@@ -1,0 +1,86 @@
+$primary-color: #3498db;
+$full-width: 100vw;
+$full-height: 100vh;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  border-radius: 10px;
+  background: #c4c4c4;
+  @include flex-center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 1rem;
+  gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.title {
+  @include flex-center;
+  gap: 10px;
+  line-height: 1.2;
+  max-width: 100%;
+
+  h2 {
+    font-size: 1.6rem;
+
+    @media (max-width: 600px) {
+      font-size: 1rem;
+    }
+  }
+}
+
+.book_image {
+  width: 30px;
+
+  @media (max-width: 600px) {
+    width: 24px;
+  }
+}
+
+.add_button_image {
+  display: flex;
+  gap: 1vw;
+  align-items: center;
+
+  button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+
+    @media (max-width: 600px) {
+      font-size: 0.9rem;
+      padding: 0.4rem 0.8rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: row-reverse;
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+.user_icon {
+  width: 1.5rem;
+  object-fit: contain;
+  cursor: pointer;
+
+  @media (max-width: 600px) {
+    width: 1.2rem;
+  }
+}
+
+.footer {
+  @include flex-center;
+}

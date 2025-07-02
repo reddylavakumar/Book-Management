@@ -1,0 +1,29 @@
+.book-list {
+  // max-height: 55vh;
+  // overflow-y: auto;
+  padding-right: 10px;
+}
+
+.book_cards {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 20px;
+}
+
+// --------new -----------
+.book-list {
+  .no_books_found {
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #555;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 49vh;
+    font-size: 1rem;
+    font-style: italic;
+    font-family: sans-serif;
+  }
+}

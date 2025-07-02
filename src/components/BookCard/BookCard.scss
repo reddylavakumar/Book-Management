@@ -1,0 +1,27 @@
+.book_card {
+  width: 150px;
+  background: white;
+  padding: 5px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  min-height: 310px;
+  gap: 0.3rem;
+}
+
+.card_image {
+  width: 100%;
+  border: 2px solid #b2b2b2;
+  padding: 1px;
+}
+
+.book_title {
+  //   font-size: inherit;
+  font-size: 10px;
+}
+
+.image_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,149 @@
+$font_size: 1em;
+
+.top_cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.main {
+  padding: 16px;
+}
+
+.card_wrapper {
+  width: calc(20% - 12px);
+  box-sizing: border-box;
+  min-width: 200px;
+}
+
+.filter_favorites {
+  display: flex;
+  margin: 1rem 0.2rem;
+  gap: 2vw;
+  font-weight: 700;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.genre_select {
+  width: 100%;
+  max-width: 500px;
+  padding: 0.6rem 1rem 0.6rem 0;
+  font-size: $font_size;
+  border: 0px solid #ccc;
+  border-radius: 6px;
+  background-color: transparent;
+  color: #333;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20fill%3D%22%23333%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2220%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M7%2010l5%205%205-5H7z%22/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0rem center;
+  background-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  font-weight: inherit;
+}
+
+.genre_select:focus {
+  border-color: #0077cc;
+  outline: none;
+  font-size: $font_size;
+}
+.read_status_div {
+  display: flex;
+  gap: 10px;
+}
+
+.read_status_buttons {
+  font-size: $font_size;
+  padding: 0.5rem 1rem;
+  background-color: #ecebeb;
+  color: black;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.read_status_buttons:hover {
+  font-size: $font_size;
+  background-color: #8b8b8b;
+  color: white;
+}
+.read_status_buttons_active {
+  font-size: $font_size;
+  background-color: #0077cc;
+  color: white;
+}
+
+// ----SLIDER CSS -----
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #79b8ac;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #79b8ac;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.switch_label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+}
+
+.book_list_div {
+  height: auto;
+  min-height: 49vh;
+}

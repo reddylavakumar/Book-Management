@@ -1,0 +1,18 @@
+// -----slider switch-----
+
+.favorites_toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.genres_read_status_buttons {
+  display: flex;
+  gap: 2rem;
+}
+.input_field {
+  padding: 7px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  width: 40vw;
+}
