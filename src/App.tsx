@@ -20,7 +20,7 @@ function App() {
             <Route path="/" element={<Home searchKeyWord={searchKeyWord} />} />
             <Route path="/add" element={<AddBook />} />
             <Route path="/edit/:id" element={<EditBook />} />
-            <Route path="/about" element={<About />} />
+            <Route path="/about/:id" element={<About />} />
           </Routes>
         </main>
         {/* <Footer /> */}

@@ -1,4 +1,5 @@
 import "./BookCard.scss";
+import { useNavigate } from "react-router-dom";
 type Book = {
   id: number | string;
   title: string;
@@ -19,9 +20,13 @@ interface BookCardProps {
 }
 
 const BookCard: React.FC<BookCardProps> = ({ book }) => {
+  const navigate = useNavigate();
   return (
     <div>
-      <div className="book_card">
+      <div
+        className="book_card"
+        onClick={() => navigate(`about/${book.title}`)}
+      >
         <div className="image_div">
           <img
             className="card_image"

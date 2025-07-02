@@ -1,0 +1,153 @@
+.add_book_form {
+  padding: 0 10px;
+  width: 100%;
+}
+
+.add_book_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  border-radius: 10px;
+  max-width: 100vw;
+}
+
+// h2 {
+//   margin-bottom: 20px;
+// }
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.title_input {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 45%;
+  min-width: 250px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  align-self: baseline;
+}
+
+.input_title {
+  padding: 8px;
+  border: 2px solid grey;
+  border-radius: 6px;
+  font-size: 16px;
+  width: 100%;
+}
+
+.visible_cover_image {
+  // border: 2px solid grey;
+  padding: 4px;
+  border-radius: 14px;
+  max-height: 200px;
+  object-fit: contain;
+  width: 100%;
+}
+
+.status_group {
+  display: flex;
+  flex: 1 1 45%;
+  flex-direction: row;
+  gap: 3vw;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.status_group > div {
+  margin: 5px 0;
+  margin: 5px 0;
+  display: flex;
+  gap: 5px;
+}
+
+.mark_checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1 1 45%;
+  align-items: baseline;
+}
+.mark_checkboxes div {
+  display: flex;
+  gap: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .title_input,
+  .status_group,
+  .mark_checkboxes {
+    width: 100%;
+  }
+  .status_group {
+    display: flex;
+    flex-direction: column;
+    gap: 0vw;
+  }
+}
+.tool_buttons {
+  display: flex;
+}
+
+.row .tool_buttons {
+  justify-content: end;
+}
+
+.cover_border {
+  border: 0px solid grey;
+  border-radius: 10px;
+  min-height: 15vh;
+  max-height: 20vh;
+  overflow: auto;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  background: #e6e6e6;
+  padding: 10px 0;
+}
+
+.add_book_title {
+  margin: 0 0 2vh 0;
+  align-self: flex-start;
+}
+.action_buttons_row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: unset;
+}
+
+.cancel_button {
+  margin-right: 2vw;
+}
+.image_preview_text {
+  color: grey;
+  font-style: italic;
+}
+#button_cancel {
+  background: #b6b6b6;
+}
+
+#button_cancel:hover {
+  background: grey;
+}
