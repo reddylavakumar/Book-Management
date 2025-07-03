@@ -25,7 +25,8 @@ const BookCard: React.FC<BookCardProps> = ({ book }) => {
     <div>
       <div
         className="book_card"
-        onClick={() => navigate(`about/${book.title}`)}
+        onClick={() => navigate(`about/${book.id}`)}
+        // onClick={() => navigate(`edit/${book.id}`)}
       >
         <div className="image_div">
           <img

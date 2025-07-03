@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import "./AddBookForm.scss";
 import booksListData from "../BooksData/BooksData";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const AddBookForm = () => {
   const navigate = useNavigate();
-
+  const { id } = useParams();
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [genre, setGenre] = useState("");
@@ -17,20 +17,95 @@ const AddBookForm = () => {
   const [inputBookCoverUrl, setInputBookCoverUrl] = useState("");
   const [bookCoverUrl, setBookCoverUrl] = useState("");
 
+  type Book = {
+    id: string;
+    title: string;
+    author: string;
+    genre: string;
+    publishedYear: number;
+    coverImage: string;
+    isRead: boolean;
+    isFavorite: boolean;
+    createdAt: string;
+    status: string;
+    description: string;
+    tags: string[];
+  };
+  useEffect(() => {
+    if (id) {
+      const booksArray: Book[] = booksListData.filter((item) => item.id === id);
+      const booksObject: Record<string, Book> = booksArray.reduce(
+        (acc, book) => {
+          acc[book.id] = book;
+          return acc;
+        },
+        {} as Record<string, Book>
+      );
+
+      console.log(booksObject[id]);
+      setTitle(booksObject[id].title);
+      setAuthor(booksObject[id].author);
+      setGenre(booksObject[id].genre);
+      setPublishedYear(booksObject[id].publishedYear.toString());
+      setBookCoverUrl(booksObject[id].coverImage);
+      setStatus(booksObject[id].status);
+      setIsRead(booksObject[id].isRead);
+      setIsFavorite(booksObject[id].isFavorite);
+    }
+  }, [id]);
+
   useEffect(() => {
     if (inputBookCoverUrl) {
       setBookCoverUrl(inputBookCoverUrl);
     }
   }, [inputBookCoverUrl]);
 
+  // const handleSave = () => {
+  //   if (!title || !author || !genre || !publishedYear || !status) {
+  //     alert("Please fill all the fields.");
+  //     return;
+  //   }
+  //   const newBook = {
+  //     id: (booksListData.length + 1).toString(),
+  //     title,
+  //     author,
+  //     genre,
+  //     publishedYear: parseInt(publishedYear),
+  //     coverImage: bookCoverUrl,
+  //     isRead,
+  //     isFavorite,
+  //     createdAt: new Date().toISOString(),
+  //     status,
+  //     description: "",
+  //     tags: [],
+  //   };
+  //   if (id) {
+  //     console.log(booksListData[id], "log");
+  //     booksListData[id].title = newBook.title;
+  //     booksListData[id].author = newBook.author;
+  //     booksListData[id].genre = newBook.genre;
+  //     booksListData[id].published_year = newBook.publishedYear;
+  //     booksListData[id].cover_image = newBook.coverImage;
+  //     booksListData[id].isRead = newBook.isRead;
+  //     booksListData[id].isFavorite = newBook.isFavorite;
+  //     booksListData[id].status = newBook.status;
+  //     booksListData[id].description = newBook.description;
+  //     navigate("/");
+  //   } else {
+  //     booksListData.push(newBook);
+  //     navigate("/");
+  //   }
+  // };
+
   const handleSave = () => {
+    // Check for required fields
     if (!title || !author || !genre || !publishedYear || !status) {
       alert("Please fill all the fields.");
       return;
     }
 
     const newBook = {
-      id: (booksListData.length + 1).toString(),
+      id: id || (booksListData.length + 1).toString(),
       title,
       author,
       genre,
@@ -44,14 +119,31 @@ const AddBookForm = () => {
       tags: [],
     };
 
-    booksListData.push(newBook);
+    if (id) {
+      // Find the index of the book in the array using the id
+      const bookIndex = booksListData.findIndex((book) => book.id === id);
+      if (bookIndex !== -1) {
+        booksListData[bookIndex] = {
+          ...booksListData[bookIndex],
+          ...newBook,
+        };
+      } else {
+        alert("Book not found.");
+        return;
+      }
+    } else {
+      booksListData.push(newBook);
+    }
+
     navigate("/");
   };
 
   return (
     <div className="add_book_form">
       <div className="add_book_container">
-        <h2 className="add_book_title">Add New Book</h2>
+        <h2 className="add_book_title">
+          {id ? `Edit Book : ${title}` : `Add New Book`}
+        </h2>
 
         {/* 1st row */}
         <div className="row ">
@@ -209,7 +301,7 @@ const AddBookForm = () => {
         <div className="row action_buttons_row">
           <div className="tool_buttons">
             <div className="cancel_button">
-              <button id="button_cancel" onClick={() => navigate("/")}>
+              <button id="button_cancel" onClick={() => navigate(-1)}>
                 Cancel
               </button>
             </div>

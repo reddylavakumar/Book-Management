@@ -6,7 +6,6 @@ const booksListData = [
     genre: "Dystopian",
     publishedYear: 1949,
     coverImage: "",
-    // "https://example.com/1984-cover.jpg",
     isRead: true,
     isFavorite: true,
     createdAt: "2023-01-15T10:00:00Z",
@@ -23,7 +22,6 @@ const booksListData = [
     publishedYear: 1937,
     coverImage: "",
 
-    // coverImage: "https://example.com/the-hobbit-cover.jpg",
     isRead: false,
     isFavorite: false,
     createdAt: "2023-03-02T15:30:00Z",
@@ -40,7 +38,6 @@ const booksListData = [
     publishedYear: 2018,
     coverImage: "",
 
-    // coverImage: "https://example.com/becoming-cover.jpg",
     isRead: true,
     isFavorite: true,
     createdAt: "2023-05-20T14:00:00Z",
@@ -57,7 +54,6 @@ const booksListData = [
     publishedYear: 2019,
     coverImage: "",
 
-    // coverImage: "https://example.com/the-silent-patient-cover.jpg",
     isRead: false,
     isFavorite: false,
     createdAt: "2023-06-10T12:15:00Z",
@@ -79,7 +75,6 @@ const booksListData = [
     publishedYear: 2012,
     coverImage: "",
 
-    // coverImage: "https://example.com/the-power-of-habit-cover.jpg",
     isRead: true,
     isFavorite: false,
     createdAt: "2023-02-10T08:45:00Z",
@@ -96,7 +91,6 @@ const booksListData = [
     publishedYear: 2011,
     coverImage: "",
 
-    // coverImage: "https://example.com/sapiens-cover.jpg",
     isRead: false,
     isFavorite: true,
     createdAt: "2023-04-12T17:00:00Z",
@@ -113,7 +107,6 @@ const booksListData = [
     publishedYear: 1951,
     coverImage: "",
 
-    // coverImage: "https://example.com/catcher-in-the-rye-cover.jpg",
     isRead: true,
     isFavorite: false,
     createdAt: "2023-03-25T09:00:00Z",
@@ -129,8 +122,6 @@ const booksListData = [
     genre: "Sci-Fi",
     publishedYear: 1965,
     coverImage: "",
-
-    // coverImage: "https://example.com/dune-cover.jpg",
     isRead: false,
     isFavorite: true,
     createdAt: "2023-06-01T11:30:00Z",
@@ -146,8 +137,6 @@ const booksListData = [
     genre: "Sci-Fi",
     publishedYear: 1965,
     coverImage: "",
-
-    // coverImage: "https://example.com/dune-cover.jpg",
     isRead: false,
     isFavorite: true,
     createdAt: "2023-06-01T11:30:00Z",
@@ -159,3 +148,11 @@ const booksListData = [
 ];
 
 export default booksListData;
+
+// export const handleDeleteBook = async (id: string) => {
+//   if (id) {
+//     console.log("inside delete");
+//     const afterRemovedBooksData = booksListData.filter((item) => item.id != id);
+//     booksListData = afterRemovedBooksData;
+//   }
+// };
