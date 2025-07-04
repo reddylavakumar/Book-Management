@@ -40,8 +40,11 @@ const BookCard: React.FC<BookCardProps> = ({ book }) => {
           />
         </div>
         <div>
-          <p className="book_title">
-            Title : <b>{book.title}</b>
+          <p className="book_title ">
+            {/* Title :{" "} */}
+            <b title={book.title} className="title_of_book">
+              {book.title}
+            </b>
           </p>
         </div>
         <div>

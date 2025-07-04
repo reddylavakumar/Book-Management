@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import "./Home.scss";
 import BookList from "../../components/BookList/BookList";
 import Toggle from "../../components/Toggle/Toggle";
-import booksListData from "../../components/BooksData/BooksData";
+// import booksListData from "../../components/BooksData/BooksData";
 type InfoCardDataItem = {
   id: number;
   label: string;
@@ -40,7 +40,13 @@ interface HomeProps {
 }
 const Home: React.FC<HomeProps> = ({ searchKeyWord }) => {
   const booksData: BookData[] = useMemo(() => {
-    return booksListData;
+    const storedData = localStorage.getItem("booksListData");
+    try {
+      return storedData ? JSON.parse(storedData) : [];
+    } catch (error) {
+      console.error("Error parsing booksListData from localStorage:", error);
+      return [];
+    }
   }, []);
 
   const [activeButton, setActiveButton] = useState<number | string | null>(

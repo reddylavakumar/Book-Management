@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./AddBookForm.scss";
-import booksListData from "../BooksData/BooksData";
+// import booksListData from "../BooksData/BooksData";
 import { useNavigate, useParams } from "react-router-dom";
 
 const AddBookForm = () => {
@@ -31,26 +31,26 @@ const AddBookForm = () => {
     description: string;
     tags: string[];
   };
+
   useEffect(() => {
     if (id) {
-      const booksArray: Book[] = booksListData.filter((item) => item.id === id);
-      const booksObject: Record<string, Book> = booksArray.reduce(
-        (acc, book) => {
-          acc[book.id] = book;
-          return acc;
-        },
-        {} as Record<string, Book>
-      );
+      const storedBooks = localStorage.getItem("booksListData");
+      const books: Book[] = storedBooks ? JSON.parse(storedBooks) : [];
 
-      console.log(booksObject[id]);
-      setTitle(booksObject[id].title);
-      setAuthor(booksObject[id].author);
-      setGenre(booksObject[id].genre);
-      setPublishedYear(booksObject[id].publishedYear.toString());
-      setBookCoverUrl(booksObject[id].coverImage);
-      setStatus(booksObject[id].status);
-      setIsRead(booksObject[id].isRead);
-      setIsFavorite(booksObject[id].isFavorite);
+      const foundBook = books.find((item) => item.id === id);
+
+      if (foundBook) {
+        setTitle(foundBook.title);
+        setAuthor(foundBook.author);
+        setGenre(foundBook.genre);
+        setPublishedYear(foundBook.publishedYear.toString());
+        setBookCoverUrl(foundBook.coverImage);
+        setStatus(foundBook.status);
+        setIsRead(foundBook.isRead);
+        setIsFavorite(foundBook.isFavorite);
+      } else {
+        alert("Book not found.");
+      }
     }
   }, [id]);
 
@@ -60,52 +60,17 @@ const AddBookForm = () => {
     }
   }, [inputBookCoverUrl]);
 
-  // const handleSave = () => {
-  //   if (!title || !author || !genre || !publishedYear || !status) {
-  //     alert("Please fill all the fields.");
-  //     return;
-  //   }
-  //   const newBook = {
-  //     id: (booksListData.length + 1).toString(),
-  //     title,
-  //     author,
-  //     genre,
-  //     publishedYear: parseInt(publishedYear),
-  //     coverImage: bookCoverUrl,
-  //     isRead,
-  //     isFavorite,
-  //     createdAt: new Date().toISOString(),
-  //     status,
-  //     description: "",
-  //     tags: [],
-  //   };
-  //   if (id) {
-  //     console.log(booksListData[id], "log");
-  //     booksListData[id].title = newBook.title;
-  //     booksListData[id].author = newBook.author;
-  //     booksListData[id].genre = newBook.genre;
-  //     booksListData[id].published_year = newBook.publishedYear;
-  //     booksListData[id].cover_image = newBook.coverImage;
-  //     booksListData[id].isRead = newBook.isRead;
-  //     booksListData[id].isFavorite = newBook.isFavorite;
-  //     booksListData[id].status = newBook.status;
-  //     booksListData[id].description = newBook.description;
-  //     navigate("/");
-  //   } else {
-  //     booksListData.push(newBook);
-  //     navigate("/");
-  //   }
-  // };
-
   const handleSave = () => {
-    // Check for required fields
     if (!title || !author || !genre || !publishedYear || !status) {
       alert("Please fill all the fields.");
       return;
     }
 
     const newBook = {
-      id: id || (booksListData.length + 1).toString(),
+      id:
+        id ||
+        //  booksListData.length + 1,
+        Date.now().toString(),
       title,
       author,
       genre,
@@ -119,12 +84,14 @@ const AddBookForm = () => {
       tags: [],
     };
 
+    const storedBooks = localStorage.getItem("booksListData");
+    const books = storedBooks ? JSON.parse(storedBooks) : [];
+
     if (id) {
-      // Find the index of the book in the array using the id
-      const bookIndex = booksListData.findIndex((book) => book.id === id);
+      const bookIndex = books.findIndex((book: Book) => book.id === id);
       if (bookIndex !== -1) {
-        booksListData[bookIndex] = {
-          ...booksListData[bookIndex],
+        books[bookIndex] = {
+          ...books[bookIndex],
           ...newBook,
         };
       } else {
@@ -132,8 +99,10 @@ const AddBookForm = () => {
         return;
       }
     } else {
-      booksListData.push(newBook);
+      books.push(newBook);
     }
+
+    localStorage.setItem("booksListData", JSON.stringify(books));
 
     navigate("/");
   };
@@ -210,7 +179,7 @@ const AddBookForm = () => {
             <label htmlFor="cover_image" className="label">
               Upload Cover
             </label>
-            <input
+            {/* <input
               type="file"
               id="cover_image"
               className="input_title"
@@ -220,6 +189,28 @@ const AddBookForm = () => {
                 if (file) {
                   const imageUrl = URL.createObjectURL(file);
                   setInputBookCoverUrl(imageUrl);
+                }
+              }}
+            /> */}
+            <input
+              type="file"
+              id="cover_image"
+              className="input_title"
+              accept="image/*"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  const reader = new FileReader();
+
+                  reader.onloadend = () => {
+                    const base64String = reader.result;
+                    if (typeof base64String === "string") {
+                      setInputBookCoverUrl(base64String);
+                      // localStorage.setItem("coverImageBase64", base64String);
+                    }
+                  };
+
+                  reader.readAsDataURL(file);
                 }
               }}
             />

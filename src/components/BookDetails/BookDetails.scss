@@ -4,13 +4,21 @@
   color: #222;
 
   &__card {
+    // display: flex;
+    // flex-direction: column;
+    // background: #fff;
+    // padding: 1.5rem;
+    // border-radius: 12px;
+    // box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    // gap: 2rem;
     display: flex;
     flex-direction: column;
     background: #fff;
     padding: 1.5rem;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    gap: 2rem;
+    // box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    gap: 3rem;
+    justify-content: flex-start;
 
     @media (min-width: 768px) {
       flex-direction: row;
@@ -33,10 +41,9 @@
   &__info {
     display: flex;
     flex-direction: column;
-    // gap: 0.5rem;
     gap: 1.5rem;
-    flex: 1;
     align-items: baseline;
+    // width: 36%;
   }
 
   &__title {
